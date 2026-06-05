@@ -3,30 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Empreiteiro em Niterói | Reformas e Obras Residenciais</title>
-  <meta name="description" content="Empreiteiro para reformas residenciais, acabamento, alvenaria, elétrica, hidráulica e pequenas obras em Niterói, São Gonçalo e Rio." />
+  <title>Edson Guedes da Rocha | Empreiteiro e Reformas em Niterói</title>
+  <meta name="description" content="Edson Guedes da Rocha: empreiteiro para reformas residenciais, obras, acabamento, alvenaria e áreas externas em Niterói, São Gonçalo e Rio." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cream: #f4efe5;
-      --cream-2: #e9dece;
-      --ink: #171615;
-      --muted: #756d63;
-      --taupe: #9a8773;
-      --terracotta: #b86b3e;
-      --charcoal: #151413;
+      --mist: #eef3f1;
+      --paper: #fbfaf6;
+      --ink: #11212b;
+      --muted: #66747b;
+      --blue: #2d6f7b;
+      --blue-dark: #173b46;
+      --wood: #b77d39;
+      --sand: #d7c5ad;
+      --charcoal: #0f1d24;
       --green: #1fa855;
-      --line: rgba(23, 22, 21, .14);
-      --radius: 24px;
-      --serif: "Playfair Display", Georgia, serif;
-      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --line: rgba(17, 33, 43, .13);
+      --radius: 18px;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: Manrope, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--cream);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(45,111,123,.13), transparent 34%),
+        linear-gradient(180deg, #f7f7f1 0%, var(--mist) 52%, #f4efe7 100%);
       color: var(--ink);
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
@@ -35,135 +39,104 @@
     a { color: inherit; text-decoration: none; }
     img { display: block; width: 100%; }
     .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
-    .eyebrow {
-      display: flex; align-items: center; gap: 14px;
-      font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--muted); font-weight: 700;
-    }
-    .eyebrow:before { content: ""; width: 42px; height: 1px; background: var(--terracotta); display: inline-block; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      border-radius: 999px; padding: 15px 22px; font-weight: 700; font-size: 14px;
-      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-      border: 1px solid transparent; cursor: pointer;
-    }
+    .eyebrow { display: flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
+    .eyebrow:before { content: ""; width: 34px; height: 2px; border-radius: 99px; background: var(--wood); display: inline-block; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 12px; padding: 15px 22px; font-weight: 800; font-size: 14px; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; border: 1px solid transparent; cursor: pointer; }
     .btn:hover { transform: translateY(-2px); }
-    .btn-dark { background: var(--ink); color: #fff; box-shadow: 0 14px 34px rgba(0,0,0,.12); }
-    .btn-outline { border-color: var(--line); background: rgba(255,255,255,.18); }
-    .btn-green { background: var(--green); color: #fff; box-shadow: 0 15px 32px rgba(31,168,85,.28); }
+    .btn-dark { background: var(--blue-dark); color: #fff; box-shadow: 0 16px 32px rgba(23,59,70,.18); }
+    .btn-outline { border-color: rgba(45,111,123,.28); background: rgba(255,255,255,.5); color: var(--blue-dark); }
+    .btn-green { background: var(--green); color: #fff; box-shadow: 0 15px 32px rgba(31,168,85,.24); }
     .wa { width: 18px; height: 18px; border-radius: 50%; background: currentColor; opacity: .95; position: relative; }
     .wa:after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--green); }
     .btn-green .wa:after { background: white; }
 
-    header {
-      padding: 30px 0 22px;
-      border-bottom: 1px solid rgba(23,22,21,.08);
-    }
+    header { padding: 22px 0; border-bottom: 1px solid rgba(17,33,43,.08); position: sticky; top: 0; z-index: 20; background: rgba(247,247,241,.82); backdrop-filter: blur(14px); }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: flex; align-items: center; gap: 14px; }
-    .mark { width: 38px; height: 44px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,.08); box-shadow: 0 10px 20px rgba(0,0,0,.06); }
-    .mark div:first-child { height: 52%; background: var(--ink); }
-    .mark div:last-child { height: 48%; background: var(--terracotta); }
-    .brand strong { font-family: var(--serif); font-size: 25px; line-height: 1; display: block; }
-    .brand span { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-    .phone-pill { padding: 11px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 700; background: rgba(255,255,255,.15); }
+    .mark { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: #fff; display: grid; place-items: center; font-weight: 900; letter-spacing: -.08em; box-shadow: 0 12px 25px rgba(17,33,43,.13); }
+    .mark div { display: none; }
+    .mark:before { content: "EG"; }
+    .brand strong { font-family: var(--serif); font-size: 24px; line-height: 1; display: block; }
+    .brand span { display: block; margin-top: 4px; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 800; }
+    .phone-pill { padding: 11px 16px; border: 1px solid var(--line); border-radius: 12px; font-size: 14px; font-weight: 800; background: rgba(255,255,255,.55); }
 
-    .hero { padding: 94px 0 84px; position: relative; }
-    .hero-grid { display: grid; grid-template-columns: 1.04fr .78fr; gap: 70px; align-items: center; }
-    h1, h2 { font-family: var(--serif); font-weight: 700; letter-spacing: -.045em; line-height: .96; }
-    h1 { font-size: clamp(58px, 8.4vw, 126px); max-width: 850px; margin: 28px 0 25px; }
-    h1 em, h2 em { color: var(--taupe); font-style: italic; font-weight: 500; }
-    .lead { color: var(--muted); font-size: clamp(17px, 1.7vw, 22px); max-width: 620px; line-height: 1.65; }
-    .actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 34px; }
-    .secondary-link { color: var(--ink); font-weight: 700; border-bottom: 1px solid rgba(23,22,21,.25); padding-bottom: 4px; }
+    .hero { padding: 76px 0 76px; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 54px; align-items: center; }
+    h1, h2 { font-family: var(--serif); font-weight: 700; letter-spacing: -.05em; line-height: .96; }
+    h1 { font-size: clamp(50px, 7.4vw, 108px); max-width: 790px; margin: 24px 0 25px; }
+    h1 em, h2 em { color: var(--blue); font-style: italic; font-weight: 500; }
+    .lead { color: var(--muted); font-size: clamp(17px, 1.55vw, 21px); max-width: 600px; line-height: 1.65; }
+    .actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 32px; }
+    .secondary-link { color: var(--blue-dark); font-weight: 800; border-bottom: 2px solid rgba(45,111,123,.25); padding-bottom: 4px; }
     .hero-card { position: relative; }
-    .photo-frame {
-      position: relative; border-radius: 34px; overflow: hidden; min-height: 580px;
-      background: linear-gradient(135deg, #d8c2a8, #80614b);
-      box-shadow: 0 24px 60px rgba(23,22,21,.18);
-    }
-    .photo-frame:before {
-      content: ""; position: absolute; inset: 0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.45)),
-        url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80') center/cover;
-    }
-    .photo-caption {
-      position: absolute; left: 24px; right: 24px; bottom: 24px;
-      background: rgba(244,239,229,.92); backdrop-filter: blur(12px);
-      border-radius: 22px; padding: 22px; border: 1px solid rgba(255,255,255,.45);
-    }
-    .photo-caption strong { display: block; font-family: var(--serif); font-size: 28px; line-height: 1.04; letter-spacing: -.03em; margin-bottom: 8px; }
+    .photo-frame { position: relative; border-radius: 28px; overflow: hidden; min-height: 560px; background: var(--sand); box-shadow: 0 26px 70px rgba(17,33,43,.18); border: 10px solid rgba(255,255,255,.6); transform: rotate(.6deg); }
+    .photo-frame:before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,29,36,.02), rgba(15,29,36,.43)), url('assets/edson-hero.jpg') center/cover; }
+    .photo-caption { position: absolute; left: 22px; right: 22px; bottom: 22px; background: rgba(251,250,246,.93); backdrop-filter: blur(12px); border-radius: 18px; padding: 20px; border-left: 5px solid var(--wood); }
+    .photo-caption strong { display: block; font-family: var(--serif); font-size: 28px; line-height: 1.04; letter-spacing: -.04em; margin-bottom: 8px; }
     .photo-caption span { color: var(--muted); font-size: 14px; }
 
-    section { padding: 92px 0; border-top: 1px solid rgba(23,22,21,.08); }
-    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 48px; }
-    h2 { font-size: clamp(46px, 6vw, 86px); max-width: 760px; margin-top: 22px; }
-    .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    .service {
-      min-height: 235px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius);
-      background: rgba(255,255,255,.18); display: flex; flex-direction: column; justify-content: space-between;
-      transition: transform .18s ease, background .18s ease;
-    }
-    .service:hover { transform: translateY(-5px); background: rgba(255,255,255,.35); }
-    .num { font-size: 12px; color: var(--terracotta); font-weight: 800; letter-spacing: .15em; }
-    .service h3 { font-family: var(--serif); font-size: 31px; line-height: 1.02; letter-spacing: -.03em; }
+    section { padding: 88px 0; border-top: 1px solid rgba(17,33,43,.08); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 44px; }
+    h2 { font-size: clamp(42px, 5.6vw, 78px); max-width: 760px; margin-top: 18px; }
+    .services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .service { min-height: 230px; padding: 24px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,255,255,.52); display: flex; flex-direction: column; justify-content: space-between; transition: transform .18s ease, background .18s ease; box-shadow: 0 12px 30px rgba(17,33,43,.04); }
+    .service:hover { transform: translateY(-5px); background: #fff; }
+    .num { font-size: 12px; color: var(--wood); font-weight: 900; letter-spacing: .15em; }
+    .service h3 { font-family: var(--serif); font-size: 29px; line-height: 1.02; letter-spacing: -.04em; }
     .service p { color: var(--muted); font-size: 14px; line-height: 1.55; }
 
-    .work-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px; }
-    .project { border-radius: 30px; overflow: hidden; position: relative; min-height: 360px; background: #d7c7b5; }
-    .project:before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.54)), var(--img) center/cover; }
-    .project.small { min-height: 230px; }
-    .project .cap { position: absolute; left: 22px; right: 22px; bottom: 22px; color: #fff; }
-    .project .cap strong { display: block; font-family: var(--serif); font-size: 30px; line-height: 1.04; letter-spacing: -.03em; }
-    .project .cap span { display: block; margin-top: 7px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .82; font-weight: 800; }
-    .stack { display: grid; gap: 18px; }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project { border-radius: 22px; overflow: hidden; position: relative; min-height: 300px; background: #d7c7b5; box-shadow: 0 18px 40px rgba(17,33,43,.10); }
+    .project.feature { grid-column: span 2; min-height: 420px; }
+    .project:before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.55)), var(--img) center/cover; transition: transform .35s ease; }
+    .project:hover:before { transform: scale(1.04); }
+    .project .cap { position: absolute; left: 20px; right: 20px; bottom: 20px; color: #fff; }
+    .project .cap strong { display: block; font-family: var(--serif); font-size: 28px; line-height: 1.04; letter-spacing: -.04em; }
+    .project .cap span { display: block; margin-top: 7px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; opacity: .84; font-weight: 900; }
 
-    .about { display: grid; grid-template-columns: .82fr 1fr; gap: 70px; align-items: center; }
-    .portrait {
-      min-height: 610px; border-radius: 34px; position: relative; isolation: isolate;
-      background: url('https://images.unsplash.com/photo-1581092919535-7146ff1a590b?auto=format&fit=crop&w=900&q=80') center/cover;
-      box-shadow: 0 22px 60px rgba(23,22,21,.15);
-    }
-    .portrait:after { content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 2px solid var(--terracotta); border-radius: 34px; z-index: -1; }
+    .about { display: grid; grid-template-columns: .82fr 1fr; gap: 66px; align-items: center; }
+    .portrait { min-height: 610px; border-radius: 28px; position: relative; isolation: isolate; background: url('assets/gr-empreiteira-profile-crop.jpg') center 45%/cover; box-shadow: 0 22px 60px rgba(17,33,43,.14); }
+    .portrait:after { content: ""; position: absolute; inset: 18px -18px -18px 18px; border: 2px solid var(--blue); border-radius: 28px; z-index: -1; }
     .about p { color: var(--muted); font-size: 18px; line-height: 1.72; margin-top: 18px; max-width: 660px; }
     .trust { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
-    .trust div { border: 1px solid var(--line); border-radius: 18px; padding: 18px; background: rgba(255,255,255,.16); }
-    .stars { color: var(--terracotta); letter-spacing: 2px; margin-bottom: 8px; }
+    .trust div { border: 1px solid var(--line); border-radius: 16px; padding: 18px; background: rgba(255,255,255,.52); }
+    .stars { color: var(--wood); letter-spacing: 2px; margin-bottom: 8px; }
     .trust strong { display: block; font-size: 14px; line-height: 1.35; }
 
     .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    blockquote { border: 1px solid var(--line); border-radius: 28px; padding: 28px; background: rgba(255,255,255,.2); min-height: 250px; display: flex; flex-direction: column; justify-content: space-between; }
-    blockquote p { color: var(--ink); font-family: var(--serif); font-size: 25px; line-height: 1.2; letter-spacing: -.02em; }
-    cite { display: block; font-style: normal; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .12em; font-weight: 800; margin-top: 26px; }
+    blockquote { border: 1px solid var(--line); border-radius: 22px; padding: 26px; background: rgba(255,255,255,.52); min-height: 230px; display: flex; flex-direction: column; justify-content: space-between; }
+    blockquote p { color: var(--ink); font-family: var(--serif); font-size: 24px; line-height: 1.2; letter-spacing: -.03em; }
+    cite { display: block; font-style: normal; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .12em; font-weight: 900; margin-top: 24px; }
 
-    .cta { background: var(--charcoal); color: var(--cream); padding: 82px 0; border-top: 6px solid var(--terracotta); }
+    .cta { background: var(--charcoal); color: #f5efe5; padding: 82px 0; border-top: 6px solid var(--blue); }
+    .cta .eyebrow { color: #9dd3dd; }
     .cta-grid { display: grid; grid-template-columns: 1fr 420px; gap: 60px; align-items: center; }
-    .cta h2 { color: var(--cream); }
-    .cta p { color: rgba(244,239,229,.68); font-size: 18px; margin-top: 22px; max-width: 540px; }
-    .contact-card { background: var(--cream); color: var(--ink); border-radius: 30px; padding: 30px; }
-    .contact-card small { color: var(--muted); letter-spacing: .16em; text-transform: uppercase; font-weight: 800; }
-    .contact-card .phone { display: block; font-family: var(--serif); font-size: 42px; margin: 18px 0 8px; letter-spacing: -.04em; }
+    .cta h2 { color: #f5efe5; }
+    .cta p { color: rgba(245,239,229,.72); font-size: 18px; margin-top: 22px; max-width: 540px; }
+    .contact-card { background: var(--paper); color: var(--ink); border-radius: 24px; padding: 30px; }
+    .contact-card small { color: var(--blue); letter-spacing: .16em; text-transform: uppercase; font-weight: 900; }
+    .contact-card .phone { display: block; font-family: var(--serif); font-size: 39px; margin: 18px 0 8px; letter-spacing: -.05em; }
     .contact-card p { color: var(--muted); margin: 0 0 24px; font-size: 15px; }
-    .contact-card .btn { width: 100%; border-radius: 18px; }
+    .contact-card .btn { width: 100%; border-radius: 14px; }
 
     footer { padding: 46px 0; }
     .footer-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 40px; color: var(--muted); }
-    footer strong { color: var(--ink); font-family: var(--serif); font-size: 28px; }
+    footer strong { color: var(--ink); font-family: var(--serif); font-size: 27px; }
     footer h4 { color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: .16em; margin-bottom: 12px; }
     footer li { list-style: none; margin: 8px 0; }
     .floating { position: fixed; right: 24px; bottom: 24px; z-index: 10; }
 
     @media (max-width: 900px) {
-      .hero-grid, .about, .cta-grid, .work-grid { grid-template-columns: 1fr; }
-      .services, .testimonials, .trust, .footer-grid { grid-template-columns: 1fr; }
+      .hero-grid, .about, .cta-grid { grid-template-columns: 1fr; }
+      .work-grid, .services, .testimonials, .trust, .footer-grid { grid-template-columns: 1fr; }
+      .project.feature { grid-column: auto; }
       .section-head { align-items: flex-start; flex-direction: column; }
       .photo-frame, .portrait { min-height: 440px; }
       .phone-pill { display: none; }
       .floating { left: 20px; right: 20px; bottom: 16px; }
       .floating .btn { width: 100%; }
-      header { padding-top: 22px; }
-      .hero { padding-top: 62px; }
+      header { padding-top: 18px; }
+      .hero { padding-top: 54px; }
     }
   </style>
 </head>
@@ -173,11 +146,11 @@
       <a class="brand" href="#top" aria-label="Página inicial">
         <div class="mark"><div></div><div></div></div>
         <div>
-          <strong>GR Empreiteira</strong>
-          <span>Empreiteiro de Reformas</span>
+          <strong>Edson Guedes</strong>
+          <span>Reformas e Obras</span>
         </div>
       </a>
-      <a class="phone-pill" href="https://wa.me/5521999999999">(21) 99999-9999</a>
+      <a class="phone-pill" href="https://wa.me/5521989242095">(21) 98924-2095</a>
     </div>
   </header>
 
@@ -186,18 +159,18 @@
       <div class="container hero-grid">
         <div>
           <div class="eyebrow">Niterói, São Gonçalo e Rio</div>
-          <h1>Empreiteiro para reformas <em>sem dor de cabeça.</em></h1>
-          <p class="lead">Obras residenciais, acabamento, alvenaria, elétrica, hidráulica e pequenos projetos com orçamento claro, prazo combinado e acompanhamento direto pelo WhatsApp.</p>
+          <h1>Reformas residenciais com <em>padrão de entrega.</em></h1>
+          <p class="lead">Do projeto ao acabamento: obra residencial, áreas gourmet, fachadas, interiores e manutenção com comunicação direta pelo WhatsApp.</p>
           <div class="actions">
-            <a class="btn btn-dark" href="https://wa.me/5521999999999"><span class="wa"></span>Pedir orçamento no WhatsApp</a>
+            <a class="btn btn-dark" href="https://wa.me/5521989242095"><span class="wa"></span>Pedir orçamento no WhatsApp</a>
             <a class="secondary-link" href="#obras">Ver obras recentes →</a>
           </div>
         </div>
         <aside class="hero-card">
           <div class="photo-frame">
             <div class="photo-caption">
-              <strong>Da quebra ao acabamento final.</strong>
-              <span>Um responsável único para coordenar mão de obra, prazo, limpeza e entrega.</span>
+              <strong>Arquitetura, acabamento e execução.</strong>
+              <span>Atendimento direto com Edson Guedes da Rocha para avaliar o serviço e organizar a execução.</span>
             </div>
           </div>
         </aside>
@@ -211,7 +184,7 @@
             <div class="eyebrow">Serviços</div>
             <h2>Obra organizada, <em>do começo ao fim.</em></h2>
           </div>
-          <a class="btn btn-outline" href="https://wa.me/5521999999999">Quero avaliar minha obra</a>
+          <a class="btn btn-outline" href="https://wa.me/5521989242095">Quero avaliar meu projeto</a>
         </div>
         <div class="services">
           <article class="service"><span class="num">01</span><h3>Reforma residencial</h3><p>Planejamento e execução de reformas em casas, apartamentos, cozinhas, banheiros e áreas externas.</p></article>
@@ -227,16 +200,17 @@
         <div class="section-head">
           <div>
             <div class="eyebrow">Trabalhos recentes</div>
-            <h2>Reformas entregues <em>nos últimos meses.</em></h2>
+            <h2>Projetos e acabamentos <em>já executados.</em></h2>
           </div>
-          <a class="btn btn-outline" href="https://wa.me/5521999999999">Quero algo parecido</a>
+          <a class="btn btn-outline" href="https://wa.me/5521989242095">Quero um orçamento parecido</a>
         </div>
         <div class="work-grid">
-          <figure class="project" style="--img:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')"><figcaption class="cap"><strong>Casa integrada com cozinha e área gourmet</strong><span>Itaipu, Niterói</span></figcaption></figure>
-          <div class="stack">
-            <figure class="project small" style="--img:url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80')"><figcaption class="cap"><strong>Banheiro reformado com porcelanato</strong><span>Santa Rosa</span></figcaption></figure>
-            <figure class="project small" style="--img:url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80')"><figcaption class="cap"><strong>Sala com novo piso e iluminação</strong><span>Icaraí</span></figcaption></figure>
-          </div>
+          <figure class="project feature" style="--img:url('assets/edson-fachada-1.jpg')"><figcaption class="cap"><strong>Fachada contemporânea com madeira e pedra</strong><span>Projeto residencial</span></figcaption></figure>
+          <figure class="project" style="--img:url('assets/edson-piscina.jpg')"><figcaption class="cap"><strong>Área externa com piscina e gourmet</strong><span>Lazer e acabamento</span></figcaption></figure>
+          <figure class="project" style="--img:url('assets/edson-gourmet.jpg')"><figcaption class="cap"><strong>Espaço gourmet integrado</strong><span>Madeira, pedra e iluminação</span></figcaption></figure>
+          <figure class="project" style="--img:url('assets/edson-interior.jpg')"><figcaption class="cap"><strong>Sala com painel ripado</strong><span>Interiores</span></figcaption></figure>
+          <figure class="project" style="--img:url('assets/edson-sala.jpg')"><figcaption class="cap"><strong>Ambiente interno sob medida</strong><span>Marcenaria e acabamento</span></figcaption></figure>
+          <figure class="project" style="--img:url('assets/edson-aerea.jpg')"><figcaption class="cap"><strong>Implantação e área externa</strong><span>Visão geral da obra</span></figcaption></figure>
         </div>
       </div>
     </section>
@@ -246,14 +220,14 @@
         <div class="portrait" aria-label="Empreiteiro acompanhando obra residencial"></div>
         <div>
           <div class="eyebrow">Sobre mim</div>
-          <h2>Mais de quinze anos <em>tocando obra.</em></h2>
-          <p>Somos a GR Empreiteira. Atuamos em Niterói e região coordenando reformas residenciais, pequenos projetos e acabamentos com equipe própria e parceiros de confiança.</p>
-          <p>Nosso trabalho é tirar a obra do improviso: orçamento por escrito, cronograma combinado, etapas claras e comunicação direta. Você sabe o que será feito, quanto vai custar e quando cada fase deve terminar.</p>
-          <p>Atendemos pelo WhatsApp. Você manda fotos, explica o que quer mudar e, quando precisa, agendamos uma visita para avaliar o serviço pessoalmente.</p>
+          <h2>Edson Guedes da Rocha, <em>responsável pela obra.</em></h2>
+          <p>Sou Edson Guedes da Rocha. Atuo em Niterói e região coordenando reformas residenciais, acabamentos, áreas externas e pequenos projetos com equipe de confiança.</p>
+          <p>Meu trabalho é tirar a obra do improviso: avaliação inicial, orçamento claro, etapas combinadas e acompanhamento próximo do que está sendo feito.</p>
+          <p>O atendimento começa pelo WhatsApp. Você manda fotos, explica o que precisa e, se fizer sentido, marcamos uma visita para ver o espaço pessoalmente.</p>
           <div class="trust">
-            <div><div class="stars">★★★★★</div><strong>Clientes indicam para vizinhos e familiares</strong></div>
+            <div><div class="stars">★★★★★</div><strong>Atendimento direto com o responsável</strong></div>
             <div><div class="stars">✓</div><strong>Orçamento por escrito e prazo combinado</strong></div>
-            <div><div class="stars">✓</div><strong>Responsável direto pela execução da obra</strong></div>
+            <div><div class="stars">✓</div><strong>Execução com atenção ao acabamento</strong></div>
           </div>
         </div>
       </div>
@@ -268,9 +242,9 @@
           </div>
         </div>
         <div class="testimonials">
-          <blockquote><p>“Reformei a cozinha e o banheiro. O Carlos organizou tudo e não me deixou perdida no meio da obra.”</p><cite>Renata M. · Icaraí</cite></blockquote>
-          <blockquote><p>“O que mais gostei foi a clareza. Orçamento fechado, prazo combinado e entrega limpa.”</p><cite>João P. · São Francisco</cite></blockquote>
-          <blockquote><p>“Chamei para pequenos reparos e acabou virando a reforma da sala. Trabalho muito caprichado.”</p><cite>Luciana R. · Santa Rosa</cite></blockquote>
+          <blockquote><p>Organização na obra, comunicação clara e cuidado com acabamento.</p><cite>O que os clientes costumam buscar</cite></blockquote>
+          <blockquote><p>Acompanhamento direto para evitar improviso, atraso e retrabalho.</p><cite>Execução residencial</cite></blockquote>
+          <blockquote><p>Do reparo pontual ao projeto maior, a prioridade é entregar bem feito.</p><cite>Reformas e acabamento</cite></blockquote>
         </div>
       </div>
     </section>
@@ -279,14 +253,14 @@
       <div class="container cta-grid">
         <div>
           <div class="eyebrow">Atendimento</div>
-          <h2>Quer reformar seu imóvel <em>com alguém responsável pela obra?</em></h2>
-          <p>Fale pelo WhatsApp, mande fotos do espaço e receba uma orientação inicial. Resposta no mesmo dia em horário comercial.</p>
+          <h2>Quer tirar seu projeto do papel <em>com acompanhamento direto?</em></h2>
+          <p>Chame no WhatsApp, mande fotos do espaço e receba uma orientação inicial para entender escopo, prazo e orçamento.</p>
         </div>
         <aside class="contact-card">
           <small>WhatsApp</small>
-          <span class="phone">(21) 99999-9999</span>
+          <span class="phone">(21) 98924-2095</span>
           <p>Segunda a sábado, 8h às 18h</p>
-          <a class="btn btn-green" href="https://wa.me/5521999999999"><span class="wa"></span>Chamar no WhatsApp</a>
+          <a class="btn btn-green" href="https://wa.me/5521989242095"><span class="wa"></span>Chamar no WhatsApp</a>
         </aside>
       </div>
     </section>
@@ -294,12 +268,12 @@
 
   <footer>
     <div class="container footer-grid">
-      <div><strong>GR Empreiteira Reformas</strong><p style="margin-top:10px">Empreiteiro para obras residenciais, reformas e acabamento em Niterói, São Gonçalo e Rio de Janeiro.</p></div>
+      <div><strong>Edson Guedes da Rocha</strong><p style="margin-top:10px">Reformas residenciais, áreas externas, interiores e acabamento em Niterói, São Gonçalo e Rio de Janeiro.</p></div>
       <div><h4>Áreas atendidas</h4><ul><li>Niterói</li><li>São Gonçalo</li><li>Rio de Janeiro</li><li>Região Oceânica</li></ul></div>
-      <div><h4>Contato</h4><ul><li><a href="https://wa.me/5521999999999">WhatsApp (21) 99999-9999</a></li><li>Atendimento direto</li></ul></div>
+      <div><h4>Contato</h4><ul><li><a href="https://wa.me/5521989242095">WhatsApp (21) 98924-2095</a></li><li>Atendimento direto</li></ul></div>
     </div>
   </footer>
 
-  <div class="floating"><a class="btn btn-green" href="https://wa.me/5521999999999"><span class="wa"></span>Falar no WhatsApp</a></div>
+  <div class="floating"><a class="btn btn-green" href="https://wa.me/5521989242095"><span class="wa"></span>Falar no WhatsApp</a></div>
 </body>
 </html>
