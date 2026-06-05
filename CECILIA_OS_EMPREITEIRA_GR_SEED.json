@@ -1,0 +1,80 @@
+{
+  "client_id": "empreiteira-gr",
+  "name": "Empreiteira GR",
+  "responsible": "Edson Rocha",
+  "segment": "reformas e construção residencial",
+  "region": "Niterói, Rio de Janeiro e Região dos Lagos",
+  "website_url": "https://empreiteiro-site.vercel.app",
+  "repository": "https://github.com/bernardolcp/gr-empreiteira-site",
+  "whatsapp": "+5521989242095",
+  "status": "setup_ready",
+  "source": "AGENTS_PACK_EMPREITEIRA_GR.md + TRACKING_EMPREITEIRA_GR.md",
+  "tracking": {
+    "client_id": "empreiteira-gr",
+    "events": [
+      "page_view",
+      "cta_click",
+      "whatsapp_open",
+      "lead_intent",
+      "section_navigation",
+      "session_no_lead"
+    ],
+    "paid_proof_fields": [
+      "gclid",
+      "gbraid",
+      "wbraid"
+    ],
+    "utm_fields": [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_content",
+      "utm_term"
+    ],
+    "paid_rule": "UTM manual sozinho não é prova de paid; paid proof exige gclid, gbraid ou wbraid."
+  },
+  "guardrails": [
+    "Não inventar depoimentos reais.",
+    "Não prometer preço sem visita/orçamento.",
+    "Não alterar landing, telefone, domínio, budget, campaign status, bidding strategy ou conversion action sem aprovação humana.",
+    "Manter foco em confiança, obra organizada, acabamento e atendimento direto.",
+    "WhatsApp correto: +55 21 98924-2095."
+  ],
+  "recommended_agents": [
+    "landing-reviewer",
+    "lead-quality-reviewer",
+    "ads-monitor",
+    "operator-assistant"
+  ],
+  "review_ritual": [
+    "Confirmar cliente empreiteira-gr e dados principais.",
+    "Ler health.",
+    "Ler métricas de 2 dias.",
+    "Comparar com 7 e 30 dias quando houver tráfego suficiente.",
+    "Ler funil de WhatsApp e paid proof.",
+    "Ler leads e tarefas.",
+    "Ler audit log recente.",
+    "Propor ação se houver oportunidade clara.",
+    "Registrar cecilia_log_agent_review ou equivalente."
+  ],
+  "initial_audit_log": {
+    "summary": "Cliente Empreiteira GR preparado para entrada no Cecilia OS com landing publicada e tracking first-party configurado.",
+    "findings": [
+      "Landing publicada em https://empreiteiro-site.vercel.app.",
+      "Eventos first-party configurados no site.",
+      "Paid proof deve usar apenas gclid, gbraid ou wbraid.",
+      "Google Business Profile ainda depende de criação/verificação manual pelo Google."
+    ],
+    "actions_executed": [
+      "Tracking first-party adicionado ao site.",
+      "Documentação de Google Business Profile criada.",
+      "Agents pack da Empreiteira GR criado."
+    ],
+    "actions_proposed": [
+      "Cadastrar cliente empreiteira-gr no Cecilia OS.",
+      "Conectar endpoint de eventos first-party do site ao Cecilia OS.",
+      "Criar GA4/GTM/Meta Pixel e preencher IDs no site quando disponíveis."
+    ],
+    "next_decision": "Criar cliente no Cecilia OS via API/MCP usando AGENT_API_KEY e depois iniciar monitoramento de WhatsApp/leads."
+  }
+}
