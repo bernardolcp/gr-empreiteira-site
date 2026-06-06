@@ -44,7 +44,10 @@
     "landing-reviewer",
     "lead-quality-reviewer",
     "ads-monitor",
-    "operator-assistant"
+    "operator-assistant",
+    "campaign-coordinator",
+    "whatsapp-followup-operator",
+    "mission-control-summarizer"
   ],
   "review_ritual": [
     "Confirmar cliente empreiteira-gr e dados principais.",
@@ -71,10 +74,29 @@
       "Agents pack da Empreiteira GR criado."
     ],
     "actions_proposed": [
-      "Cadastrar cliente empreiteira-gr no Cecilia OS.",
+      "Cadastrar cliente empreiteira-gr no Cecilia OS como mission control operacional.",
       "Conectar endpoint de eventos first-party do site ao Cecilia OS.",
+      "Criar visão de campanhas, interações, leads, follow-ups e tarefas do responsável.",
       "Criar GA4/GTM/Meta Pixel e preencher IDs no site quando disponíveis."
     ],
-    "next_decision": "Criar cliente no Cecilia OS via API/MCP usando AGENT_API_KEY e depois iniciar monitoramento de WhatsApp/leads."
+    "next_decision": "Criar cliente no Cecilia OS via API/MCP usando AGENT_API_KEY e iniciar o mission control de mídia + WhatsApp + leads, seguindo o modelo Eduardo."
+  },
+  "mission_control": {
+    "model_reference": "Eduardo-style mission control",
+    "purpose": "Coordenar operação comercial e mídia para cliente de serviço local, não apenas registrar tracking do site.",
+    "scope": [
+      "centralizar ações de mídia e campanhas",
+      "acompanhar interações e respostas no WhatsApp",
+      "organizar leads, follow-ups e tarefas do responsável",
+      "conectar visitas/eventos do site com conversas e oportunidades reais",
+      "registrar decisões, próximos passos e evidências de campanha"
+    ],
+    "operator_view": [
+      "campanhas ativas e próximas ações",
+      "leads abertos e status de follow-up",
+      "interações recentes que precisam de resposta",
+      "eventos de conversão e origem provável",
+      "tarefas operacionais para Edson/Bernardo"
+    ]
   }
 }
