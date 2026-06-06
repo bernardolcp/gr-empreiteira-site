@@ -17,8 +17,10 @@
       clientId: 'empreiteira-gr',
       businessName: 'Empreiteira GR',
       phone: '+5521989242095',
+      ceciliaEndpoint: 'https://cecilia-os.vercel.app/api/public/site-events',
+      trackingKey: 'empreiteira-gr-public-v1',
       // Preencher quando criar as contas:
-      // gtmId: 'GTM-XXXXXXX',
+
       // ga4Id: 'G-XXXXXXXXXX',
       // metaPixelId: '000000000000000'
     };
@@ -40,10 +42,45 @@
     })();
 
     window.dataLayer = window.dataLayer || [];
+    window.GR_SESSION_ID = sessionStorage.getItem('gr_session_id') || (Date.now() + '-' + Math.random().toString(36).slice(2));
+    sessionStorage.setItem('gr_session_id', window.GR_SESSION_ID);
     function gtag(){ window.dataLayer.push(arguments); }
+    function sendCeciliaEvent(eventName, payload) {
+      var cfg = window.GR_TRACKING_CONFIG || {};
+      if (!cfg.ceciliaEndpoint || !cfg.trackingKey) return;
+      var body = {
+        client_id: cfg.clientId,
+        tracking_key: cfg.trackingKey,
+        event_name: eventName,
+        event_id: window.GR_SESSION_ID + '-' + eventName + '-' + Date.now(),
+        session_id: window.GR_SESSION_ID,
+        source: payload.attribution && (payload.attribution.utm_source || (payload.attribution.gclid || payload.attribution.gbraid || payload.attribution.wbraid ? 'google_ads' : null)),
+        path: payload.page_path,
+        url: payload.page_location,
+        referrer: payload.referrer,
+        landing_url: window.location.origin + window.location.pathname,
+        gclid: payload.attribution && payload.attribution.gclid,
+        gbraid: payload.attribution && payload.attribution.gbraid,
+        wbraid: payload.attribution && payload.attribution.wbraid,
+        utm_source: payload.attribution && payload.attribution.utm_source,
+        utm_medium: payload.attribution && payload.attribution.utm_medium,
+        utm_campaign: payload.attribution && payload.attribution.utm_campaign,
+        utm_term: payload.attribution && payload.attribution.utm_term,
+        utm_content: payload.attribution && payload.attribution.utm_content,
+        metadata: payload,
+        occurred_at: new Date().toISOString()
+      };
+      var json = JSON.stringify(body);
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(cfg.ceciliaEndpoint, new Blob([json], { type: 'application/json' }));
+      } else {
+        fetch(cfg.ceciliaEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: json, keepalive: true }).catch(function(){});
+      }
+    }
     window.grTrack = function(eventName, params) {
       var payload = Object.assign({
         client_id: window.GR_TRACKING_CONFIG.clientId,
+        session_id: window.GR_SESSION_ID,
         page_path: window.location.pathname,
         page_location: window.location.href,
         attribution: window.GR_ATTRIBUTION || {},
@@ -51,6 +88,7 @@
         referrer: document.referrer || null
       }, params || {});
       window.dataLayer.push(Object.assign({ event: eventName }, payload));
+      sendCeciliaEvent(eventName, payload);
       if (window.GR_TRACKING_CONFIG.ga4Id && typeof window.gtag === 'function') window.gtag('event', eventName, payload);
       if (typeof window.fbq === 'function') window.fbq('trackCustom', eventName, payload);
     };
