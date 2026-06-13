@@ -86,6 +86,9 @@
         metadata: payload,
         occurred_at: new Date().toISOString()
       };
+      Object.keys(body).forEach(function(key){
+        if (body[key] === null || typeof body[key] === 'undefined') delete body[key];
+      });
       var json = JSON.stringify(body);
       // Use fetch as the primary transport. Some browsers report sendBeacon=true
       // for cross-origin JSON blobs but the request never reaches our endpoint;
