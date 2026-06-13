@@ -25,16 +25,23 @@
       // metaPixelId: '000000000000000'
     };
 
+    function safeStorageGet(key) {
+      try { return window.sessionStorage && sessionStorage.getItem(key); } catch (e) { return null; }
+    }
+    function safeStorageSet(key, value) {
+      try { if (window.sessionStorage) sessionStorage.setItem(key, value); } catch (e) {}
+    }
+
     (function captureAttribution(){
       var params = new URLSearchParams(window.location.search);
       var attributionKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid'];
       var paidProofKeys = ['gclid', 'gbraid', 'wbraid'];
       var attribution = {};
       attributionKeys.forEach(function(key){
-        var value = params.get(key) || sessionStorage.getItem('gr_' + key);
+        var value = params.get(key) || safeStorageGet('gr_' + key);
         if (value) {
           attribution[key] = value;
-          sessionStorage.setItem('gr_' + key, value);
+          safeStorageSet('gr_' + key, value);
         }
       });
       window.GR_ATTRIBUTION = attribution;
@@ -42,9 +49,18 @@
     })();
 
     window.dataLayer = window.dataLayer || [];
-    window.GR_SESSION_ID = sessionStorage.getItem('gr_session_id') || (Date.now() + '-' + Math.random().toString(36).slice(2));
-    sessionStorage.setItem('gr_session_id', window.GR_SESSION_ID);
+    window.GR_SESSION_ID = safeStorageGet('gr_session_id') || (Date.now() + '-' + Math.random().toString(36).slice(2));
+    safeStorageSet('gr_session_id', window.GR_SESSION_ID);
     function gtag(){ window.dataLayer.push(arguments); }
+    function postCeciliaEvent(endpoint, json) {
+      return fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: json,
+        keepalive: true,
+        mode: 'cors'
+      }).catch(function(){});
+    }
     function sendCeciliaEvent(eventName, payload) {
       var cfg = window.GR_TRACKING_CONFIG || {};
       if (!cfg.ceciliaEndpoint || !cfg.trackingKey) return;
@@ -71,11 +87,15 @@
         occurred_at: new Date().toISOString()
       };
       var json = JSON.stringify(body);
+      var sentByBeacon = false;
       if (navigator.sendBeacon) {
-        navigator.sendBeacon(cfg.ceciliaEndpoint, new Blob([json], { type: 'application/json' }));
-      } else {
-        fetch(cfg.ceciliaEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: json, keepalive: true }).catch(function(){});
+        try {
+          sentByBeacon = navigator.sendBeacon(cfg.ceciliaEndpoint, new Blob([json], { type: 'application/json' }));
+        } catch (e) {
+          sentByBeacon = false;
+        }
       }
+      if (!sentByBeacon) postCeciliaEvent(cfg.ceciliaEndpoint, json);
     }
     window.grTrack = function(eventName, params) {
       var payload = Object.assign({
