@@ -19,6 +19,7 @@
       phone: '+5521989242095',
       ceciliaEndpoint: 'https://cecilia-os.vercel.app/api/public/site-events',
       trackingKey: 'empreiteira-gr-public-v1',
+      leadWebhookUrl: 'https://script.google.com/macros/s/AKfycbyjwyL-6JfYOrcDaCHNfMYcfWaDwubbPVb0NpxmwawpwyLPez62jmVhE2jhoIk7g0OA/exec',
       // Preencher quando criar as contas:
 
       // ga4Id: 'G-XXXXXXXXXX',
@@ -539,6 +540,28 @@
             'WhatsApp: ' + whatsapp,
             'Origem: ' + attributionSource + campaign
           ].filter(Boolean).join('\n');
+          var leadPayload = {
+            client_id: 'empreiteira-gr',
+            name: name,
+            whatsapp: whatsapp,
+            location: location,
+            service: service,
+            timing: timing,
+            source: attribution.utm_source || (hasPaidProof ? 'google_ads' : 'landing_form'),
+            session_id: window.GR_SESSION_ID,
+            page_url: window.location.href,
+            occurred_at: new Date().toISOString(),
+            attribution: attribution
+          };
+          var cfg = window.GR_TRACKING_CONFIG || {};
+          if (cfg.leadWebhookUrl) {
+            fetch(cfg.leadWebhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify(leadPayload),
+              keepalive: true
+            }).catch(function(){});
+          }
           window.location.href = 'https://wa.me/5521989242095?text=' + encodeURIComponent(message);
         });
       }
