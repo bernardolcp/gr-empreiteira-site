@@ -87,15 +87,11 @@
         occurred_at: new Date().toISOString()
       };
       var json = JSON.stringify(body);
-      var sentByBeacon = false;
-      if (navigator.sendBeacon) {
-        try {
-          sentByBeacon = navigator.sendBeacon(cfg.ceciliaEndpoint, new Blob([json], { type: 'application/json' }));
-        } catch (e) {
-          sentByBeacon = false;
-        }
-      }
-      if (!sentByBeacon) postCeciliaEvent(cfg.ceciliaEndpoint, json);
+      // Use fetch as the primary transport. Some browsers report sendBeacon=true
+      // for cross-origin JSON blobs but the request never reaches our endpoint;
+      // Cecilia OS needs reliable first-party attribution more than unload-only
+      // semantics. keepalive preserves the common navigation case.
+      postCeciliaEvent(cfg.ceciliaEndpoint, json);
     }
     window.grTrack = function(eventName, params) {
       var payload = Object.assign({
