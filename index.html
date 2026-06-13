@@ -275,6 +275,16 @@
     .contact-card .phone { display: block; font-family: var(--serif); font-size: 39px; margin: 18px 0 8px; letter-spacing: -.05em; }
     .contact-card p { color: var(--muted); margin: 0 0 24px; font-size: 15px; }
     .contact-card .btn { width: 100%; border-radius: 14px; }
+    .lead-form { margin-top: 20px; display: grid; gap: 14px; }
+    .form-field { display: grid; gap: 7px; }
+    .form-field span { font-size: 11px; text-transform: uppercase; letter-spacing: .16em; color: var(--blue); font-weight: 900; }
+    .form-field input { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; background: #fff; color: var(--ink); font: inherit; outline: none; }
+    .form-field input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(45,111,123,.12); }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .choice-btn { border: 1px solid var(--line); border-radius: 12px; padding: 12px; background: #fff; color: var(--ink); font: inherit; font-weight: 800; text-align: left; cursor: pointer; }
+    .choice-btn[aria-pressed="true"] { border-color: var(--green); background: rgba(31,168,85,.12); color: var(--blue-dark); }
+    .form-hint { font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .form-error { display: none; font-size: 13px; color: #a8432f; font-weight: 800; }
 
     footer { padding: 46px 0; }
     .footer-grid { display: grid; grid-template-columns: 1.2fr .8fr .8fr; gap: 40px; color: var(--muted); }
@@ -292,6 +302,7 @@
       .phone-pill { display: none; }
       .floating { left: 20px; right: 20px; bottom: 16px; }
       .floating .btn { width: 100%; }
+      .choice-grid { grid-template-columns: 1fr; }
       header { padding-top: 18px; }
       .hero { padding-top: 54px; }
     }
@@ -319,7 +330,7 @@
           <h1>Reformas residenciais com <em>padrão de entrega.</em></h1>
           <p class="lead">Do projeto ao acabamento: obra residencial, áreas gourmet, fachadas, interiores e manutenção com comunicação direta pelo WhatsApp.</p>
           <div class="actions">
-            <a class="btn btn-dark" href="https://wa.me/5521989242095"><span class="wa"></span>Pedir orçamento no WhatsApp</a>
+            <a class="btn btn-dark" href="#orcamento"><span class="wa"></span>Pedir orçamento</a>
             <a class="secondary-link" href="#obras">Ver obras recentes →</a>
           </div>
         </div>
@@ -341,7 +352,7 @@
             <div class="eyebrow">Serviços</div>
             <h2>Obra organizada, <em>do começo ao fim.</em></h2>
           </div>
-          <a class="btn btn-outline" href="https://wa.me/5521989242095">Quero avaliar meu projeto</a>
+          <a class="btn btn-outline" href="#orcamento">Quero avaliar meu projeto</a>
         </div>
         <div class="services">
           <article class="service"><span class="num">01</span><h3>Reforma residencial</h3><p>Planejamento e execução de reformas em casas, apartamentos, cozinhas, banheiros e áreas externas.</p></article>
@@ -359,7 +370,7 @@
             <div class="eyebrow">Trabalhos recentes</div>
             <h2>Projetos e acabamentos <em>já executados.</em></h2>
           </div>
-          <a class="btn btn-outline" href="https://wa.me/5521989242095">Quero um orçamento parecido</a>
+          <a class="btn btn-outline" href="#orcamento">Quero um orçamento parecido</a>
         </div>
         <div class="work-grid">
           <figure class="project feature" style="--img:url('assets/edson-fachada-1.jpg')"><figcaption class="cap"><strong>Fachada contemporânea com madeira e pedra</strong><span>Projeto residencial</span></figcaption></figure>
@@ -413,11 +424,43 @@
           <h2>Quer tirar seu projeto do papel <em>com acompanhamento direto?</em></h2>
           <p>Chame no WhatsApp, mande fotos do espaço e receba uma orientação inicial para entender escopo, prazo e orçamento.</p>
         </div>
-        <aside class="contact-card">
-          <small>WhatsApp</small>
-          <span class="phone">(21) 98924-2095</span>
-          <p>Segunda a sábado, 8h às 18h</p>
-          <a class="btn btn-green" href="https://wa.me/5521989242095"><span class="wa"></span>Chamar no WhatsApp</a>
+        <aside class="contact-card" id="orcamento">
+          <small>Orçamento pelo WhatsApp</small>
+          <span class="phone">Conte o básico da obra</span>
+          <p>Preencha 3 informações rápidas. O Edson já recebe contexto para responder melhor sobre visita, escopo e prazo.</p>
+          <form class="lead-form" id="edson-lead-form">
+            <label class="form-field">
+              <span>Nome (opcional)</span>
+              <input name="name" autocomplete="name" placeholder="Seu nome" />
+            </label>
+            <label class="form-field">
+              <span>Bairro / cidade</span>
+              <input name="location" autocomplete="address-level3" placeholder="Ex: Itaipu, Santa Rosa, São Gonçalo" required />
+            </label>
+            <div class="form-field">
+              <span>Tipo de obra</span>
+              <div class="choice-grid" data-choice-group="service">
+                <button class="choice-btn" type="button" data-value="Reforma residencial" aria-pressed="true">Reforma residencial</button>
+                <button class="choice-btn" type="button" data-value="Banheiro/cozinha" aria-pressed="false">Banheiro/cozinha</button>
+                <button class="choice-btn" type="button" data-value="Área gourmet/externa" aria-pressed="false">Área gourmet/externa</button>
+                <button class="choice-btn" type="button" data-value="Acabamento/reparo" aria-pressed="false">Acabamento/reparo</button>
+              </div>
+            </div>
+            <div class="form-field">
+              <span>Momento</span>
+              <div class="choice-grid" data-choice-group="timing">
+                <button class="choice-btn" type="button" data-value="Quero começar logo" aria-pressed="true">Quero começar logo</button>
+                <button class="choice-btn" type="button" data-value="Estou pesquisando orçamento" aria-pressed="false">Pesquisando orçamento</button>
+              </div>
+            </div>
+            <label class="form-field">
+              <span>WhatsApp</span>
+              <input name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="(21) 99999-9999" required />
+            </label>
+            <p class="form-error" id="edson-form-error">Preencha bairro/cidade e WhatsApp para continuar.</p>
+            <p class="form-hint">Você será direcionado para o WhatsApp com a mensagem pronta.</p>
+            <button class="btn btn-green" type="submit"><span class="wa"></span>Enviar contexto para o Edson</button>
+          </form>
         </aside>
       </div>
     </section>
@@ -441,6 +484,63 @@
 
       function track(eventName, extra) {
         window.grTrack(eventName, extra || {});
+      }
+
+      function selectedChoice(groupName) {
+        var selected = document.querySelector('[data-choice-group="' + groupName + '"] .choice-btn[aria-pressed="true"]');
+        return selected ? selected.getAttribute('data-value') : '';
+      }
+
+      document.querySelectorAll('.choice-grid').forEach(function(group){
+        group.addEventListener('click', function(event){
+          var button = event.target.closest('.choice-btn');
+          if (!button) return;
+          group.querySelectorAll('.choice-btn').forEach(function(item){ item.setAttribute('aria-pressed', 'false'); });
+          button.setAttribute('aria-pressed', 'true');
+          track('lead_form_start', { source: 'service_choice', field: group.getAttribute('data-choice-group'), value: button.getAttribute('data-value') });
+        });
+      });
+
+      var form = document.getElementById('edson-lead-form');
+      if (form) {
+        var started = false;
+        form.addEventListener('input', function(event){
+          if (started) return;
+          started = true;
+          track('lead_form_start', { source: 'form_input', field: event.target && event.target.name });
+        });
+        form.addEventListener('submit', function(event){
+          event.preventDefault();
+          var data = new FormData(form);
+          var name = String(data.get('name') || '').trim();
+          var location = String(data.get('location') || '').trim();
+          var whatsapp = String(data.get('whatsapp') || '').trim();
+          var service = selectedChoice('service') || 'Reforma residencial';
+          var timing = selectedChoice('timing') || 'Quero começar logo';
+          var error = document.getElementById('edson-form-error');
+          if (!location || !whatsapp) {
+            if (error) error.style.display = 'block';
+            return;
+          }
+          if (error) error.style.display = 'none';
+          isLeadIntent = true;
+          track('lead_form_submit', { source: 'landing_form', service: service, location: location, timing: timing });
+          track('whatsapp_open', { cta_label: 'form_submit', service: service, location: location, timing: timing });
+          track('lead_intent', { channel: 'whatsapp', cta_label: 'form_submit', service: service, location: location, timing: timing });
+          var attributionSource = attribution.utm_source || (hasPaidProof ? 'google_ads' : 'site');
+          var campaign = attribution.utm_campaign ? '\nCampanha: ' + attribution.utm_campaign : '';
+          var message = [
+            'Olá Edson, vim pelo site da Empreiteira GR e quero falar sobre uma obra/reforma.',
+            '',
+            name ? 'Nome: ' + name : null,
+            'Bairro/cidade: ' + location,
+            'Tipo de obra: ' + service,
+            'Momento: ' + timing,
+            'WhatsApp: ' + whatsapp,
+            'Origem: ' + attributionSource + campaign
+          ].filter(Boolean).join('\n');
+          window.location.href = 'https://wa.me/5521989242095?text=' + encodeURIComponent(message);
+        });
       }
 
       document.querySelectorAll('a[href*="wa.me/5521989242095"]').forEach(function(link, index){
