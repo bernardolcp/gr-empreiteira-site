@@ -20,6 +20,8 @@
       ceciliaEndpoint: 'https://cecilia-os.vercel.app/api/public/site-events',
       trackingKey: 'empreiteira-gr-public-v1',
       leadWebhookUrl: '/api/leads',
+      googleAdsId: 'AW-18225028181',
+      googleAdsConversionSendTo: 'AW-18225028181/1QC8CP6f578cENW4r_JD',
       // Preencher quando criar as contas:
 
       // ga4Id: 'G-XXXXXXXXXX',
@@ -110,8 +112,24 @@
       window.dataLayer.push(Object.assign({ event: eventName }, payload));
       sendCeciliaEvent(eventName, payload);
       if (window.GR_TRACKING_CONFIG.ga4Id && typeof window.gtag === 'function') window.gtag('event', eventName, payload);
+      if (eventName === 'lead_intent') fireGoogleAdsConversionOnce(payload);
       if (typeof window.fbq === 'function') window.fbq('trackCustom', eventName, payload);
     };
+
+    function fireGoogleAdsConversionOnce(payload) {
+      var cfg = window.GR_TRACKING_CONFIG || {};
+      if (!cfg.googleAdsConversionSendTo || typeof window.gtag !== 'function') return;
+      var key = 'gr_google_ads_lead_conversion_sent';
+      if (safeStorageGet(key)) return;
+      safeStorageSet(key, new Date().toISOString());
+      window.gtag('event', 'conversion', {
+        send_to: cfg.googleAdsConversionSendTo,
+        value: 1.0,
+        currency: 'BRL',
+        event_category: 'lead',
+        event_label: payload && payload.cta_label ? payload.cta_label : 'lead_intent'
+      });
+    }
 
     (function loadTracking(){
       var cfg = window.GR_TRACKING_CONFIG;
@@ -121,13 +139,14 @@
         s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(cfg.gtmId);
         document.head.appendChild(s);
       }
-      if (cfg.ga4Id) {
+      if (cfg.ga4Id || cfg.googleAdsId) {
         var ga = document.createElement('script');
         ga.async = true;
-        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.ga4Id);
+        ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.ga4Id || cfg.googleAdsId);
         document.head.appendChild(ga);
         window.gtag('js', new Date());
-        window.gtag('config', cfg.ga4Id, { send_page_view: true });
+        if (cfg.ga4Id) window.gtag('config', cfg.ga4Id, { send_page_view: true });
+        if (cfg.googleAdsId) window.gtag('config', cfg.googleAdsId);
       }
       if (cfg.metaPixelId) {
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
