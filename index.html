@@ -511,6 +511,17 @@
         return selected ? selected.getAttribute('data-value') : '';
       }
 
+      function sendLeadWebhook(payload) {
+        var cfg = window.GR_TRACKING_CONFIG || {};
+        if (!cfg.leadWebhookUrl) return;
+        fetch(cfg.leadWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(function(){});
+      }
+
       document.querySelectorAll('.choice-grid').forEach(function(group){
         group.addEventListener('click', function(event){
           var button = event.target.closest('.choice-btn');
@@ -572,15 +583,7 @@
             occurred_at: new Date().toISOString(),
             attribution: attribution
           };
-          var cfg = window.GR_TRACKING_CONFIG || {};
-          if (cfg.leadWebhookUrl) {
-            fetch(cfg.leadWebhookUrl, {
-              method: 'POST',
-              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-              body: JSON.stringify(leadPayload),
-              keepalive: true
-            }).catch(function(){});
-          }
+          sendLeadWebhook(leadPayload);
           window.location.href = 'https://wa.me/5521989242095?text=' + encodeURIComponent(message);
         });
       }
@@ -597,6 +600,20 @@
           track('cta_click', { cta_type: 'whatsapp', cta_label: label, cta_index: index + 1 });
           track('whatsapp_open', { cta_label: label, cta_index: index + 1 });
           track('lead_intent', { channel: 'whatsapp', cta_label: label });
+          if (!window.GR_DIRECT_WHATSAPP_LEAD_RECORDED) {
+            window.GR_DIRECT_WHATSAPP_LEAD_RECORDED = true;
+            sendLeadWebhook({
+              client_id: 'empreiteira-gr',
+              source: attribution.utm_source || (hasPaidProof ? 'google_ads' : 'whatsapp_cta'),
+              session_id: window.GR_SESSION_ID,
+              page_url: window.location.href,
+              occurred_at: new Date().toISOString(),
+              service: 'Contato via WhatsApp',
+              timing: 'Clique direto no WhatsApp',
+              cta_label: label,
+              attribution: attribution
+            });
+          }
         });
 
         if (Object.keys(attribution).length) {
